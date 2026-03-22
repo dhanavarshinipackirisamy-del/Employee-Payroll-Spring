@@ -6,10 +6,8 @@ public class EmployeeDTO {
     private String name;
     private double salary;
 
-    // Default constructor
     public EmployeeDTO() {}
 
-    // Getters
     public Long getId() {
         return id;
     }
@@ -22,7 +20,6 @@ public class EmployeeDTO {
         return salary;
     }
 
-    // Setters
     public void setId(Long id) {
         this.id = id;
     }
