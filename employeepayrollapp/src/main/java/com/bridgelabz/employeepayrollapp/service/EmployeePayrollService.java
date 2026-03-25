@@ -1,49 +1,23 @@
 package com.bridgelabz.employeepayrollapp.service;
 
+import com.bridgelabz.employeepayrollapp.model.Employee;
 import org.springframework.stereotype.Service;
-import java.util.*;
-import com.bridgelabz.employeepayrollapp.dto.EmployeeDTO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class EmployeePayrollService {
 
-    private List<EmployeeDTO> employeeList = new ArrayList<>();
-    private Long idCounter = 1L;
+    private final List<Employee> list = new ArrayList<>();
 
-    // GET ALL
-    public List<EmployeeDTO> getAllEmployees() {
-        return employeeList;
+    public List<Employee> getAll() {
+        return list;
     }
 
-    // GET BY ID
-    public EmployeeDTO getEmployeeById(Long id) {
-        return employeeList.stream()
-                .filter(emp -> emp.getId().equals(id))
-                .findFirst()
-                .orElse(null);
-    }
-
-    // CREATE
-    public EmployeeDTO createEmployee(EmployeeDTO emp) {
-        emp.setId(idCounter++);
-        employeeList.add(emp);
+    public Employee create(String name, long salary) {
+        Employee emp = new Employee(name, salary);
+        list.add(emp);
         return emp;
-    }
-
-    // UPDATE
-    public EmployeeDTO updateEmployee(Long id, EmployeeDTO emp) {
-        for (EmployeeDTO e : employeeList) {
-            if (e.getId().equals(id)) {
-                e.setName(emp.getName());
-                e.setSalary(emp.getSalary());
-                return e;
-            }
-        }
-        return null;
-    }
-
-    // DELETE
-    public void deleteEmployee(Long id) {
-        employeeList.removeIf(emp -> emp.getId().equals(id));
     }
 }
