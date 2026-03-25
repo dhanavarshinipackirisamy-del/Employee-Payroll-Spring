@@ -1,5 +1,6 @@
 package com.bridgelabz.employeepayrollapp.controller;
 
+import com.bridgelabz.employeepayrollapp.dto.EmployeeDTO;
 import com.bridgelabz.employeepayrollapp.model.Employee;
 import com.bridgelabz.employeepayrollapp.service.EmployeePayrollService;
 
@@ -20,8 +21,24 @@ public class EmployeePayrollController {
         return service.getAll();
     }
 
+    @GetMapping("/{id}")
+    public Employee getById(@PathVariable int id) {
+        return service.getById(id);
+    }
+
     @PostMapping
-    public Employee create(@RequestParam String name, @RequestParam long salary) {
-        return service.create(name, salary);
+    public Employee create(@RequestBody EmployeeDTO dto) {
+        return service.create(dto);
+    }
+
+    @PutMapping("/{id}")
+    public Employee update(@PathVariable int id, @RequestBody EmployeeDTO dto) {
+        return service.update(id, dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable int id) {
+        service.delete(id);
+        return "Deleted Successfully";
     }
 }

@@ -1,5 +1,7 @@
 package com.bridgelabz.employeepayrollapp.model;
 
+import com.bridgelabz.employeepayrollapp.dto.EmployeeDTO;
+
 public class Employee {
 
     private static int counter = 1;
@@ -14,7 +16,16 @@ public class Employee {
         this.salary = salary;
     }
 
+    public Employee(EmployeeDTO dto) {
+        this.id = counter++;
+        this.name = dto.getName();
+        this.salary = dto.getSalary();
+    }
+
     public int getId() { return id; }
     public String getName() { return name; }
     public long getSalary() { return salary; }
+
+    public void setName(String name) { this.name = name; }
+    public void setSalary(long salary) { this.salary = salary; }
 }
